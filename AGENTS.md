@@ -16,6 +16,11 @@ small, portable, strongly typed, and useful outside Cataquí applications.
 
 - Export consumer APIs explicitly from `lib/oh_my_flutter.dart`.
 - Every exported declaration and public member requires useful Dartdoc.
+- Keep Dartdoc for extensible containers, such as libraries, classes,
+  extensions, and mixins, generic enough to remain accurate when new
+  capabilities are added. Do not define a container solely by the first or
+  only feature it currently exposes; document feature-specific behavior on the
+  member that provides it.
 - Avoid `dynamic`; narrow unknown values at their boundary.
 - Preserve backwards compatibility within a minor release. Document breaking
   changes and release them with the appropriate semantic version.
