@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "clean-code": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/clean-code/SKILL.md",
+      "computedHash": "74bf6ded4f61ddcb593e7a29beb96c284f888cbe0639ad6e23710447c36ff19a"
+    },
     "dart-add-unit-test": {
       "source": "dart-lang/skills",
       "sourceType": "github",
@@ -18,6 +24,12 @@
       "sourceType": "github",
       "skillPath": "skills/dart-run-static-analysis/SKILL.md",
       "computedHash": "e64ea092e216ecdc9b4a8b49b06d0b9a0b49f680c1116ada1d247b2de3fa6fe1"
+    },
+    "flutter-expert": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/flutter-expert/SKILL.md",
+      "computedHash": "139b7409b4d0d4b31724a4fb886749fe062f5e27c822e3d1acc7bf0cdc460817"
     },
     "systematic-debugging": {
       "source": "obra/superpowers",
