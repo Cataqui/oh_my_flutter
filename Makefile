@@ -8,10 +8,10 @@ setup:
 	cd example && fvm flutter pub get --enforce-lockfile
 
 format:
-	fvm dart format --line-length 120 lib test example/lib/main.dart
+	fvm dart format lib test example/lib/main.dart
 
 format-check:
-	fvm dart format --line-length 120 --output none --set-exit-if-changed lib test example/lib/main.dart
+	fvm dart format --output none --set-exit-if-changed lib test example/lib/main.dart
 
 analyze:
 	fvm flutter analyze --fatal-infos

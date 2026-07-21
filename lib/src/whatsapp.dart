@@ -31,7 +31,10 @@ class Whatsapp {
   ///
   /// Set [isWeb] to `true` to simulate the web platform path
   @visibleForTesting
-  factory Whatsapp.test({required Future<bool> Function(Uri uri) launcher, bool isWeb = false}) {
+  factory Whatsapp.test({
+    required Future<bool> Function(Uri uri) launcher,
+    bool isWeb = false,
+  }) {
     return Whatsapp._(launcher, isWeb: isWeb);
   }
 
@@ -74,16 +77,23 @@ class Whatsapp {
       );
     }
 
-    if (_isWeb) return _launcher(_buildWaMeUri(digits: digits, message: message));
+    if (_isWeb) {
+      return _launcher(_buildWaMeUri(digits: digits, message: message));
+    }
     return _launchMobileChat(digits: digits, message: message);
   }
 
-  Future<bool> _launchMobileChat({required String digits, String? message}) async {
+  Future<bool> _launchMobileChat({
+    required String digits,
+    String? message,
+  }) async {
     final params = <String, String>{'phone': digits};
     if (message != null && message.isNotEmpty) params['text'] = message;
 
     try {
-      final launched = await _launcher(Uri(scheme: 'whatsapp', host: 'send', queryParameters: params));
+      final launched = await _launcher(
+        Uri(scheme: 'whatsapp', host: 'send', queryParameters: params),
+      );
       if (launched) return true;
     } catch (_) {
       // No activity found to handle the whatsapp:// intent.
@@ -97,7 +107,9 @@ class Whatsapp {
       scheme: 'https',
       host: 'wa.me',
       path: '/$digits',
-      queryParameters: (message != null && message.isNotEmpty) ? <String, String>{'text': message} : null,
+      queryParameters: (message != null && message.isNotEmpty)
+          ? <String, String>{'text': message}
+          : null,
     );
   }
 }

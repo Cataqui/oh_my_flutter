@@ -44,13 +44,17 @@ void main() {
 
     dioWithInterceptor = Dio()
       ..httpClientAdapter = _ThrowingAdapter(exception)
-      ..interceptors.add(OfflineErrorDioInterceptor.test(internetConnection: mockConnection));
+      ..interceptors.add(
+        OfflineErrorDioInterceptor.test(internetConnection: mockConnection),
+      );
   }
 
   group('OfflineErrorDioInterceptor', () {
     group('when the device is offline', () {
       setUp(() {
-        when(() => mockConnection.hasInternetAccess).thenAnswer((_) async => false);
+        when(
+          () => mockConnection.hasInternetAccess,
+        ).thenAnswer((_) async => false);
       });
 
       test('when the dio error is connectionError and device is offline, '
@@ -59,7 +63,13 @@ void main() {
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.error, 'error', isA<OfflineConnectionDioException>())),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.error,
+              'error',
+              isA<OfflineConnectionDioException>(),
+            ),
+          ),
         );
       });
 
@@ -69,7 +79,13 @@ void main() {
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.error, 'error', isA<OfflineConnectionDioException>())),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.error,
+              'error',
+              isA<OfflineConnectionDioException>(),
+            ),
+          ),
         );
       });
 
@@ -79,7 +95,13 @@ void main() {
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.error, 'error', isA<OfflineConnectionDioException>())),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.error,
+              'error',
+              isA<OfflineConnectionDioException>(),
+            ),
+          ),
         );
       });
 
@@ -89,7 +111,13 @@ void main() {
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.error, 'error', isA<OfflineConnectionDioException>())),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.error,
+              'error',
+              isA<OfflineConnectionDioException>(),
+            ),
+          ),
         );
       });
 
@@ -99,7 +127,13 @@ void main() {
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.error, 'error', isA<OfflineConnectionDioException>())),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.error,
+              'error',
+              isA<OfflineConnectionDioException>(),
+            ),
+          ),
         );
       });
 
@@ -109,45 +143,78 @@ void main() {
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.error, 'error', isA<OfflineConnectionDioException>())),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.error,
+              'error',
+              isA<OfflineConnectionDioException>(),
+            ),
+          ),
         );
       });
 
       test('when the connectivity check itself throws, '
           'it should wrap the error with OfflineConnectionException', () async {
         buildDio(type: DioExceptionType.connectionError);
-        when(() => mockConnection.hasInternetAccess).thenAnswer((_) => Future.error(Exception('check failed')));
+        when(
+          () => mockConnection.hasInternetAccess,
+        ).thenAnswer((_) => Future.error(Exception('check failed')));
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.error, 'error', isA<OfflineConnectionDioException>())),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.error,
+              'error',
+              isA<OfflineConnectionDioException>(),
+            ),
+          ),
         );
       });
 
       test('when the connectivity check times out, '
           'it should wrap the error with OfflineConnectionException', () async {
         buildDio(type: DioExceptionType.connectionError);
-        when(() => mockConnection.hasInternetAccess).thenAnswer((_) => Completer<bool>().future);
+        when(
+          () => mockConnection.hasInternetAccess,
+        ).thenAnswer((_) => Completer<bool>().future);
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.error, 'error', isA<OfflineConnectionDioException>())),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.error,
+              'error',
+              isA<OfflineConnectionDioException>(),
+            ),
+          ),
         );
       });
     });
 
     group('when the device is online', () {
       setUp(() {
-        when(() => mockConnection.hasInternetAccess).thenAnswer((_) async => true);
+        when(
+          () => mockConnection.hasInternetAccess,
+        ).thenAnswer((_) async => true);
       });
 
       test('when the dio error is connectionError and device is online, '
           'it should preserve the original DioException', () async {
-        buildDio(type: DioExceptionType.connectionError, message: 'Failed to connect');
+        buildDio(
+          type: DioExceptionType.connectionError,
+          message: 'Failed to connect',
+        );
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.type, 'type', DioExceptionType.connectionError)),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.type,
+              'type',
+              DioExceptionType.connectionError,
+            ),
+          ),
         );
       });
 
@@ -157,7 +224,13 @@ void main() {
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.type, 'type', DioExceptionType.badResponse)),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.type,
+              'type',
+              DioExceptionType.badResponse,
+            ),
+          ),
         );
       });
 
@@ -167,14 +240,22 @@ void main() {
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.type, 'type', DioExceptionType.unknown)),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.type,
+              'type',
+              DioExceptionType.unknown,
+            ),
+          ),
         );
       });
     });
 
     group('when the error type should skip the check', () {
       setUp(() {
-        when(() => mockConnection.hasInternetAccess).thenAnswer((_) async => false);
+        when(
+          () => mockConnection.hasInternetAccess,
+        ).thenAnswer((_) async => false);
       });
 
       test('when the dio error is badCertificate, '
@@ -183,7 +264,13 @@ void main() {
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.type, 'type', DioExceptionType.badCertificate)),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.type,
+              'type',
+              DioExceptionType.badCertificate,
+            ),
+          ),
         );
       });
 
@@ -193,17 +280,32 @@ void main() {
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.type, 'type', DioExceptionType.cancel)),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.type,
+              'type',
+              DioExceptionType.cancel,
+            ),
+          ),
         );
       });
 
       test('when the dio error is transformTimeout, '
           'it should preserve the original DioException unchanged', () async {
-        buildDio(type: DioExceptionType.transformTimeout, message: 'Transformation timed out');
+        buildDio(
+          type: DioExceptionType.transformTimeout,
+          message: 'Transformation timed out',
+        );
 
         await expectLater(
           dioWithInterceptor.get<void>('/jobs'),
-          throwsA(isA<DioException>().having((e) => e.type, 'type', DioExceptionType.transformTimeout)),
+          throwsA(
+            isA<DioException>().having(
+              (e) => e.type,
+              'type',
+              DioExceptionType.transformTimeout,
+            ),
+          ),
         );
       });
     });
@@ -211,7 +313,9 @@ void main() {
     test('when the request fails offline, '
         'the DioException.error should carry the OfflineConnectionException '
         'with the original DioException as its cause', () async {
-      when(() => mockConnection.hasInternetAccess).thenAnswer((_) async => false);
+      when(
+        () => mockConnection.hasInternetAccess,
+      ).thenAnswer((_) async => false);
 
       final originalError = DioException(
         requestOptions: RequestOptions(path: '/jobs'),
@@ -221,13 +325,22 @@ void main() {
 
       final dio = Dio()
         ..httpClientAdapter = _ThrowingAdapter(originalError)
-        ..interceptors.add(OfflineErrorDioInterceptor.test(internetConnection: mockConnection));
+        ..interceptors.add(
+          OfflineErrorDioInterceptor.test(internetConnection: mockConnection),
+        );
 
       try {
         await dio.get<void>('/jobs');
         fail('expected exception to be thrown');
       } on DioException catch (e) {
-        expect(e.error, isA<OfflineConnectionDioException>().having((o) => o.cause, 'cause', same(originalError)));
+        expect(
+          e.error,
+          isA<OfflineConnectionDioException>().having(
+            (o) => o.cause,
+            'cause',
+            same(originalError),
+          ),
+        );
       }
     });
   });

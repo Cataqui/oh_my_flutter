@@ -49,8 +49,12 @@ final class Oklch {
   /// Colors outside bounded sRGB or Display P3 are perceptually gamut-mapped
   /// using constant lightness and hue with CSS Color 4 OKLCH chroma reduction.
   /// Extended-sRGB output remains unbounded. The default output is sRGB.
-  static Color toColor(double l, double c, double h, {ColorSpace colorSpace = ColorSpace.sRGB}) =>
-      _OklchConverter.toColor(l, c, h, colorSpace: colorSpace);
+  static Color toColor(
+    double l,
+    double c,
+    double h, {
+    ColorSpace colorSpace = ColorSpace.sRGB,
+  }) => _OklchConverter.toColor(l, c, h, colorSpace: colorSpace);
 
   @override
   bool operator ==(Object other) {

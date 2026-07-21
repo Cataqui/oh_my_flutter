@@ -7,7 +7,10 @@ extension VelocityExtension on Velocity {
   /// [minVelocity] is the minimum primary-axis speed in logical pixels per
   /// second. When [requireVerticalDominance] is `true`, the vertical speed
   /// must be strictly greater than the horizontal speed.
-  bool isSwipeDown({double minVelocity = 700.0, bool requireVerticalDominance = true}) {
+  bool isSwipeDown({
+    double minVelocity = 700.0,
+    bool requireVerticalDominance = true,
+  }) {
     return _isVerticalSwipe(
       minVelocity: minVelocity,
       requireVerticalDominance: requireVerticalDominance,
@@ -20,7 +23,10 @@ extension VelocityExtension on Velocity {
   /// [minVelocity] is the minimum primary-axis speed in logical pixels per
   /// second. When [requireVerticalDominance] is `true`, the vertical speed
   /// must be strictly greater than the horizontal speed.
-  bool isSwipeUp({double minVelocity = 700.0, bool requireVerticalDominance = true}) {
+  bool isSwipeUp({
+    double minVelocity = 700.0,
+    bool requireVerticalDominance = true,
+  }) {
     return _isVerticalSwipe(
       minVelocity: minVelocity,
       requireVerticalDominance: requireVerticalDominance,
@@ -33,7 +39,10 @@ extension VelocityExtension on Velocity {
   /// [minVelocity] is the minimum primary-axis speed in logical pixels per
   /// second. When [requireHorizontalDominance] is `true`, the horizontal speed
   /// must be strictly greater than the vertical speed.
-  bool isSwipeLeft({double minVelocity = 700.0, bool requireHorizontalDominance = true}) {
+  bool isSwipeLeft({
+    double minVelocity = 700.0,
+    bool requireHorizontalDominance = true,
+  }) {
     return _isHorizontalSwipe(
       minVelocity: minVelocity,
       requireHorizontalDominance: requireHorizontalDominance,
@@ -46,7 +55,10 @@ extension VelocityExtension on Velocity {
   /// [minVelocity] is the minimum primary-axis speed in logical pixels per
   /// second. When [requireHorizontalDominance] is `true`, the horizontal speed
   /// must be strictly greater than the vertical speed.
-  bool isSwipeRight({double minVelocity = 700.0, bool requireHorizontalDominance = true}) {
+  bool isSwipeRight({
+    double minVelocity = 700.0,
+    bool requireHorizontalDominance = true,
+  }) {
     return _isHorizontalSwipe(
       minVelocity: minVelocity,
       requireHorizontalDominance: requireHorizontalDominance,
@@ -64,7 +76,9 @@ extension VelocityExtension on Velocity {
     final verticalVelocity = pixelsPerSecond.dy.abs();
     if (verticalVelocity < minVelocity) return false;
 
-    final hasRequiredAxisDominance = !requireVerticalDominance || verticalVelocity > pixelsPerSecond.dx.abs();
+    final hasRequiredAxisDominance =
+        !requireVerticalDominance ||
+        verticalVelocity > pixelsPerSecond.dx.abs();
     return hasRequiredAxisDominance;
   }
 
@@ -78,7 +92,9 @@ extension VelocityExtension on Velocity {
     final horizontalVelocity = pixelsPerSecond.dx.abs();
     if (horizontalVelocity < minVelocity) return false;
 
-    final hasRequiredAxisDominance = !requireHorizontalDominance || horizontalVelocity > pixelsPerSecond.dy.abs();
+    final hasRequiredAxisDominance =
+        !requireHorizontalDominance ||
+        horizontalVelocity > pixelsPerSecond.dy.abs();
     return hasRequiredAxisDominance;
   }
 }

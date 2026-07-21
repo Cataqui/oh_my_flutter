@@ -20,12 +20,18 @@ void main() {
       });
 
       group('when sanitizing the phone number', () {
-        test('when launching with a clean international number, '
-            'it should call the launcher with https://wa.me/<digits>', () async {
-          await whatsapp.launchChat(number: '551198887777');
+        test(
+          'when launching with a clean international number, '
+          'it should call the launcher with https://wa.me/<digits>',
+          () async {
+            await whatsapp.launchChat(number: '551198887777');
 
-          expect(capturedUris.single.toString(), 'https://wa.me/551198887777');
-        });
+            expect(
+              capturedUris.single.toString(),
+              'https://wa.me/551198887777',
+            );
+          },
+        );
 
         test('when the number has spaces, dashes, and parens, '
             'it should strip them and pass digits only', () async {
@@ -69,12 +75,15 @@ void main() {
           expect(capturedUris.single.toString(), 'https://wa.me/5511969230546');
         });
 
-        test('when the number is a US format with country code, '
-            'it should strip the formatting and produce the correct URI', () async {
-          await whatsapp.launchChat(number: '+1 (415) 555-2671');
+        test(
+          'when the number is a US format with country code, '
+          'it should strip the formatting and produce the correct URI',
+          () async {
+            await whatsapp.launchChat(number: '+1 (415) 555-2671');
 
-          expect(capturedUris.single.toString(), 'https://wa.me/14155552671');
-        });
+            expect(capturedUris.single.toString(), 'https://wa.me/14155552671');
+          },
+        );
 
         test('when the number has leading and trailing whitespace, '
             'it should strip spaces and produce the correct URI', () async {
@@ -89,15 +98,27 @@ void main() {
             'it should include a text query parameter', () async {
           await whatsapp.launchChat(number: '551198887777', message: 'Hello');
 
-          expect(capturedUris.single.queryParametersAll['text'], equals(['Hello']));
+          expect(
+            capturedUris.single.queryParametersAll['text'],
+            equals(['Hello']),
+          );
         });
 
-        test('when a message contains spaces and accented characters (Cataquí), '
-            'it should percent-encode them correctly', () async {
-          await whatsapp.launchChat(number: '551198887777', message: 'Hey, found you on Cataquí');
+        test(
+          'when a message contains spaces and accented characters (Cataquí), '
+          'it should percent-encode them correctly',
+          () async {
+            await whatsapp.launchChat(
+              number: '551198887777',
+              message: 'Hey, found you on Cataquí',
+            );
 
-          expect(capturedUris.single.toString(), contains('text=Hey%2C+found+you+on+Cataqu%C3%AD'));
-        });
+            expect(
+              capturedUris.single.toString(),
+              contains('text=Hey%2C+found+you+on+Cataqu%C3%AD'),
+            );
+          },
+        );
 
         test('when the message is null, '
             'it should NOT include any text query parameter', () async {
@@ -122,7 +143,10 @@ void main() {
 
         test('when the number contains only non-digit characters, '
             'it should throw an ArgumentError', () async {
-          expect(() => whatsapp.launchChat(number: '+-- () '), throwsArgumentError);
+          expect(
+            () => whatsapp.launchChat(number: '+-- () '),
+            throwsArgumentError,
+          );
         });
       });
 
@@ -164,42 +188,63 @@ void main() {
             'it should call the launcher with whatsapp://send', () async {
           await whatsapp.launchChat(number: '551198887777');
 
-          expect(capturedUris.single.toString(), 'whatsapp://send?phone=551198887777');
+          expect(
+            capturedUris.single.toString(),
+            'whatsapp://send?phone=551198887777',
+          );
         });
 
         test('when the number has formatting, '
             'it should strip it and pass digits only', () async {
           await whatsapp.launchChat(number: '+55 (11) 9888-7777');
 
-          expect(capturedUris.single.toString(), 'whatsapp://send?phone=551198887777');
+          expect(
+            capturedUris.single.toString(),
+            'whatsapp://send?phone=551198887777',
+          );
         });
 
         test('when a message is provided, '
             'it should include the text query parameter', () async {
           await whatsapp.launchChat(number: '551198887777', message: 'Hello');
 
-          expect(capturedUris.single.queryParametersAll['text'], equals(['Hello']));
+          expect(
+            capturedUris.single.queryParametersAll['text'],
+            equals(['Hello']),
+          );
         });
 
         test('when a message contains special characters, '
             'it should percent-encode them', () async {
-          await whatsapp.launchChat(number: '551198887777', message: 'Hey, found you on Cataquí');
+          await whatsapp.launchChat(
+            number: '551198887777',
+            message: 'Hey, found you on Cataquí',
+          );
 
-          expect(capturedUris.single.toString(), contains('text=Hey%2C+found+you+on+Cataqu%C3%AD'));
+          expect(
+            capturedUris.single.toString(),
+            contains('text=Hey%2C+found+you+on+Cataqu%C3%AD'),
+          );
         });
 
         test('when the message is null, '
             'it should NOT include a text query parameter', () async {
           await whatsapp.launchChat(number: '551198887777');
 
-          expect(capturedUris.single.queryParametersAll.containsKey('text'), isFalse);
+          expect(
+            capturedUris.single.queryParametersAll.containsKey('text'),
+            isFalse,
+          );
         });
 
         test('when the message is empty, '
             'it should NOT include a text query parameter', () async {
           await whatsapp.launchChat(number: '551198887777', message: '');
 
-          expect(capturedUris.single.queryParametersAll.containsKey('text'), isFalse);
+          expect(
+            capturedUris.single.queryParametersAll.containsKey('text'),
+            isFalse,
+          );
         });
 
         test('when the launcher returns true, '
@@ -236,7 +281,10 @@ void main() {
           await whatsapp.launchChat(number: '551198887777');
 
           expect(capturedUris, hasLength(2));
-          expect(capturedUris[0].toString(), 'whatsapp://send?phone=551198887777');
+          expect(
+            capturedUris[0].toString(),
+            'whatsapp://send?phone=551198887777',
+          );
           expect(capturedUris[1].toString(), 'https://wa.me/551198887777');
         });
 
@@ -253,7 +301,10 @@ void main() {
             launcher: (uri) async {
               capturedUris.add(uri);
               if (capturedUris.length == 1) {
-                throw PlatformException(code: 'ACTIVITY_NOT_FOUND', message: 'No Activity found');
+                throw PlatformException(
+                  code: 'ACTIVITY_NOT_FOUND',
+                  message: 'No Activity found',
+                );
               }
               return true;
             },
@@ -262,7 +313,10 @@ void main() {
           final result = await whatsapp.launchChat(number: '551198887777');
 
           expect(capturedUris, hasLength(2));
-          expect(capturedUris[0].toString(), 'whatsapp://send?phone=551198887777');
+          expect(
+            capturedUris[0].toString(),
+            'whatsapp://send?phone=551198887777',
+          );
           expect(capturedUris[1].toString(), 'https://wa.me/551198887777');
           expect(result, isTrue);
         });
@@ -281,8 +335,14 @@ void main() {
           await whatsapp.launchChat(number: '551198887777', message: 'Hello');
 
           expect(capturedUris, hasLength(2));
-          expect(capturedUris[0].toString(), 'whatsapp://send?phone=551198887777&text=Hello');
-          expect(capturedUris[1].toString(), 'https://wa.me/551198887777?text=Hello');
+          expect(
+            capturedUris[0].toString(),
+            'whatsapp://send?phone=551198887777&text=Hello',
+          );
+          expect(
+            capturedUris[1].toString(),
+            'https://wa.me/551198887777?text=Hello',
+          );
         });
       });
 
@@ -298,7 +358,10 @@ void main() {
             'it should throw an ArgumentError', () async {
           final whatsapp = Whatsapp.test(launcher: (_) async => true);
 
-          expect(() => whatsapp.launchChat(number: '+-- () '), throwsArgumentError);
+          expect(
+            () => whatsapp.launchChat(number: '+-- () '),
+            throwsArgumentError,
+          );
         });
       });
     });

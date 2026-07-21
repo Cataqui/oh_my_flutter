@@ -33,7 +33,9 @@ class OfflineErrorDioInterceptor extends Interceptor {
   /// Creates an [OfflineErrorDioInterceptor] with a controllable
   /// [internetConnection] for testing.
   @visibleForTesting
-  factory OfflineErrorDioInterceptor.test({required InternetConnection internetConnection}) {
+  factory OfflineErrorDioInterceptor.test({
+    required InternetConnection internetConnection,
+  }) {
     return OfflineErrorDioInterceptor._(internetConnection);
   }
 
@@ -56,7 +58,9 @@ class OfflineErrorDioInterceptor extends Interceptor {
     required ErrorInterceptorHandler handler,
   }) async {
     try {
-      final isOnline = await _internetConnection.hasInternetAccess.timeout(_checkTimeout);
+      final isOnline = await _internetConnection.hasInternetAccess.timeout(
+        _checkTimeout,
+      );
       handler.next(isOnline ? error : _wrapWithOfflineException(error));
     } on Object {
       handler.next(_wrapWithOfflineException(error));
