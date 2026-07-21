@@ -25,6 +25,12 @@
       "skillPath": "skills/dart-run-static-analysis/SKILL.md",
       "computedHash": "e64ea092e216ecdc9b4a8b49b06d0b9a0b49f680c1116ada1d247b2de3fa6fe1"
     },
+    "documentation-writer": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/documentation-writer/SKILL.md",
+      "computedHash": "ee53d65b163cd7eb953a930c95841cfe398cc2c0bd24c06508bbaa07c432be35"
+    },
     "flutter-expert": {
       "source": "sickn33/antigravity-awesome-skills",
       "sourceType": "github",
