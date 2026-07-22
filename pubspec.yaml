@@ -9,8 +9,6 @@ topics:
   - flutter
   - utilities
   - extensions
-  - connectivity
-  - oklch
 
 environment:
   sdk: ">=3.12.0 <4.0.0"
