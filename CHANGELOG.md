@@ -1,4 +1,4 @@
-## 0.3.0
+## 0.3.1
 
 - Add controller-driven `ControlledVisibility` with independent caller-owned
   show and hide transitions, configurable timing, reduced-motion handling, and
@@ -6,6 +6,8 @@
 - Add `RouteSettled` for showing route content only after navigation motion and
   user gestures finish, with optional direction-specific transitions.
 - Improve pubspec description.
+- Align the package's explicit formatter settings with `pana` so local and
+  publication analysis both pass at the configured 120-column width.
 
 ## 0.2.0
 
