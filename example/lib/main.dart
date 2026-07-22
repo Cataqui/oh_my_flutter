@@ -23,7 +23,7 @@ class UtilityExample extends StatelessWidget {
         body: Center(
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: '#FF4A4B'.hexToColor(),
+              color: const Color(0xFFFF4A4B),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Padding(
