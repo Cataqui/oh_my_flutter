@@ -5,7 +5,7 @@ Thanks for helping keep Flutter utilities focused and dependable.
 ## Development
 
 ```bash
-git clone https://github.com/Cataqui/oh_my_flutter.git
+git clone https://github.com/Ventairy/oh_my_flutter.git
 cd oh_my_flutter
 make setup
 make check

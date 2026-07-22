@@ -8,22 +8,17 @@ Small, strongly typed utilities for common Flutter application tasks.
 
 ## Installation
 
-> [!NOTE]
-> Until the first pub.dev release, install the package from the immutable
-> `v0.1.0` Git tag.
-
-```yaml
-dependencies:
-  oh_my_flutter:
-    git:
-      url: https://github.com/Cataqui/oh_my_flutter.git
-      ref: v0.1.0
-```
-
-After publication, install the latest compatible release with:
+Add the latest compatible release from pub.dev:
 
 ```console
 flutter pub add oh_my_flutter
+```
+
+Or add it directly to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  oh_my_flutter: ^0.2.0
 ```
 
 Import the public library wherever you need it:
@@ -160,10 +155,10 @@ application state, routing, localization, design components, or
 application-specific domain logic.
 
 [api]: https://pub.dev/documentation/oh_my_flutter/latest/oh_my_flutter/
-[ci]: https://github.com/Cataqui/oh_my_flutter/actions/workflows/ci.yml
-[ci-badge]: https://github.com/Cataqui/oh_my_flutter/actions/workflows/ci.yml/badge.svg
-[example]: https://github.com/Cataqui/oh_my_flutter/blob/main/example/lib/main.dart
-[license]: https://github.com/Cataqui/oh_my_flutter/blob/main/LICENSE
+[ci]: https://github.com/Ventairy/oh_my_flutter/actions/workflows/ci.yml
+[ci-badge]: https://github.com/Ventairy/oh_my_flutter/actions/workflows/ci.yml/badge.svg
+[example]: https://github.com/Ventairy/oh_my_flutter/blob/main/example/lib/main.dart
+[license]: https://github.com/Ventairy/oh_my_flutter/blob/main/LICENSE
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [pub]: https://pub.dev/packages/oh_my_flutter
 [pub-badge]: https://img.shields.io/pub/v/oh_my_flutter.svg
