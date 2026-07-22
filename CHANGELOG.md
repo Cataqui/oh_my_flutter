@@ -1,3 +1,8 @@
+## 0.3.1
+
+- Align the package's explicit formatter settings with `pana` so local and
+  publication analysis both pass at the configured 120-column width.
+
 ## 0.3.0
 
 - Add controller-driven `ControlledVisibility` with independent caller-owned
